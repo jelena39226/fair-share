@@ -24,3 +24,21 @@ FairShare is a responsive student project management application.
 - NextAuth
 - dnd-kit
 - Recharts
+
+## Run locally
+
+Install Node.js, then run:
+
+```bash
+npm install
+npm run dev
+```
+
+Open the URL printed by Next.js, usually `http://localhost:3000`.
+
+## Deploy to GitHub Pages
+
+The `Deploy to GitHub Pages` workflow builds a static export when changes are
+pushed to `main`. In the repository settings, set **Pages → Build and
+deployment → Source** to **GitHub Actions**. The published site is available at
+`https://jelena39226.github.io/fairshare-edu/`.
