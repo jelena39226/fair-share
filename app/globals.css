@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --ink: #16161D;
+  --graphite: #6B6A73;
+  --chalk: #E5E3DC;
+  --mist: #F5F4F0;
+  --ember: #FF6B35;
+  --paper: #FFFFFF;
+}
+
 html,
 body {
   min-height: 100%;
@@ -9,10 +18,15 @@ body {
 
 body {
   margin: 0;
-  background: #F5F4F0;
-  color: #16161D;
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--mist);
+  color: var(--ink);
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2 {
+  font-family: "Bricolage Grotesque", Inter, "Segoe UI", Arial, sans-serif;
 }
 
 * {
