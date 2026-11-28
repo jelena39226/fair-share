@@ -322,37 +322,6 @@ export default function Dashboard() {
       return;
     }
 
-    function handleAddMember(event: FormEvent<HTMLFormElement>) {
-      event.preventDefault();
-      const name = newMemberName.trim();
-      if (!name) {
-        return;
-      }
-
-      setMembers((currentMembers) => [
-        ...currentMembers,
-        {
-          id: crypto.randomUUID(),
-          name,
-          color: memberColors[currentMembers.length % memberColors.length]
-        }
-      ]);
-      setNewMemberName("");
-      setIsAddMemberOpen(false);
-    }
-
-    function handleAssigneeChange(taskId: string, assigneeId: string | null) {
-      setTasks((currentTasks) =>
-        currentTasks.map((task) => task.id === taskId ? { ...task, assigneeId } : task)
-      );
-    }
-
-    function handlePointsChange(taskId: string, points: number) {
-      setTasks((currentTasks) =>
-        currentTasks.map((task) => task.id === taskId ? { ...task, points } : task)
-      );
-    }
-
     setTasks((currentTasks) => {
       const nextNumber = currentTasks.reduce(
         (largestNumber, task) => Math.max(largestNumber, task.number),
@@ -360,11 +329,49 @@ export default function Dashboard() {
       ) + 1;
       return [
         ...currentTasks,
-        { id: crypto.randomUUID(), number: nextNumber, title, status: "backlog" }
+        {
+          id: crypto.randomUUID(),
+          number: nextNumber,
+          title,
+          status: "backlog",
+          assigneeId: null,
+          points: 1
+        }
       ];
     });
     setNewTaskTitle("");
     setIsAddFormOpen(false);
+  }
+
+  function handleAddMember(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const name = newMemberName.trim();
+    if (!name) {
+      return;
+    }
+
+    setMembers((currentMembers) => [
+      ...currentMembers,
+      {
+        id: crypto.randomUUID(),
+        name,
+        color: memberColors[currentMembers.length % memberColors.length]
+      }
+    ]);
+    setNewMemberName("");
+    setIsAddMemberOpen(false);
+  }
+
+  function handleAssigneeChange(taskId: string, assigneeId: string | null) {
+    setTasks((currentTasks) =>
+      currentTasks.map((task) => task.id === taskId ? { ...task, assigneeId } : task)
+    );
+  }
+
+  function handlePointsChange(taskId: string, points: number) {
+    setTasks((currentTasks) =>
+      currentTasks.map((task) => task.id === taskId ? { ...task, points } : task)
+    );
   }
 
   function handleDragEnd(event: DragEndEvent) {
